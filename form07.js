@@ -1,9 +1,34 @@
+
+$('input[name="dates"]').daterangepicker();
+
+$( "#masculino" ).click(function() {
+    alert( "Tu genero es Masculino" );
+
+  });
+  
+$( "#femenino" ).click(function() {
+    alert( "Tu genero es Femenino" );
+
+  });
+
+
+$(function () {
+    $('input[name="birthday"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: 1950,
+        maxYear: parseInt(moment().format('YYYY'), 10)
+    }, function (start, end, label) {
+        var years = moment().diff(start, 'years');
+        alert("Tu Tienes " + years + " Años de Edad!");
+    });
+});
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
 inputs.forEach((input) => {
-	input.addEventListener('keyup', validar);
-	input.addEventListener('blur', validar);
+    input.addEventListener('keyup', validar);
+    input.addEventListener('blur', validar);
 });
 function validar(e) {
     e.preventDefault()
@@ -26,20 +51,21 @@ function validar(e) {
     }
 }
 
+
 formulario.addEventListener('submit', (e) => {
 
-	e.preventDefault();
-	let email = document.getElementById("email").value
-	if(email === ""){
-		document.getElementById('formulario_mensaje').classList.add('formulario_mensaje_invalid')
-		document.getElementById('formulario_mensaje').innerHTML='Tu registro es invalido';
-	}
-	else {
-			document.getElementById('formulario_mensaje').classList.add('formulario_mensaje_valid')
-			document.getElementById('formulario_mensaje').innerHTML='Tu registro es valido';
-			setTimeout(() => {
-				formulario.reset();
-			}, 5000);	
-		}
-		
+    e.preventDefault();
+    let email = document.getElementById("email").value
+    if (email === "") {
+        document.getElementById('formulario_mensaje').classList.add('formulario_mensaje_invalid')
+        document.getElementById('formulario_mensaje').innerHTML = 'Tu registro es invalido';
+    }
+    else {
+        document.getElementById('formulario_mensaje').classList.add('formulario_mensaje_valid')
+        document.getElementById('formulario_mensaje').innerHTML = 'Tu registro es valido';
+        setTimeout(() => {
+            formulario.reset();
+        }, 5000);
+    }
+
 });
